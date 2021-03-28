@@ -295,6 +295,16 @@ services:
       - ./configs/erc20-withdraw.yaml:/config.yaml
     entrypoint: "erc20-withdraw-svc"
     command: ["run", "withdraw"]
+  game-service:
+    image: olegfomenko2002/bua2021:game-service
+    restart: unless-stopped
+    environment:
+      - KV_VIPER_FILE=/config.yaml
+    volumes:
+      - ./configs/game-service.yaml:/config.yaml
+    command: ["run", "service"]
+  init-rules: 
+    image: olegfomenko2002/bua2021:init-rule
 
 volumes:
   adks-data:
